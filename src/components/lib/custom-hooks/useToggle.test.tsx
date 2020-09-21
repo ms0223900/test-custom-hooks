@@ -1,6 +1,4 @@
-import React from 'react';
-import { shallow, mount } from 'enzyme';
-import renderHook from '../test-hooks/renderHook';
+import renderHook from 'components/lib/test-hooks/renderHook';
 import useToggle from './useToggle';
 import { act } from '@testing-library/react';
 
