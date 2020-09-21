@@ -1,10 +1,9 @@
 import { mount, shallow } from 'enzyme';
 import React, { ReactNode } from 'react';
-import { Ref } from "react";
 
 type Callback = (params?: any) => any
 
-
+// 作為一個組件來渲染，我們在此拿到更新的hookState
 function TestHookWrapper<HookFn extends Callback>(hookFn: HookFn, ref?: any) {
   return (...hookArgs: Parameters<HookFn>) => () => {
     const hookStates = hookFn(...hookArgs) as ReturnType<HookFn>;
@@ -28,7 +27,7 @@ function renderHook<HookFn extends Callback>(hookFn: HookFn, Wrapper?: React.Com
         </Wrapper>
       );
     } else {
-      shallow(
+      mount(
         <Hook />
       );
     }

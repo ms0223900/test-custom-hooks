@@ -1,11 +1,23 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-const useToggle = (initToggle=false) => {
+export interface UseToggleOptions {
+  initToggle?: boolean
+  changedCallback?: (toggle: boolean) => any
+}
+
+const useToggle = ({
+  initToggle=false,
+  changedCallback,
+}: UseToggleOptions) => {
   const [toggle, setToggle] = useState(initToggle);
 
   const handleToggle = useCallback(() => {
     setToggle(t => !t);
   }, []);
+
+  useEffect(() => {
+    changedCallback && changedCallback(toggle);
+  }, [changedCallback, toggle]);
 
   return ({
     toggle,
